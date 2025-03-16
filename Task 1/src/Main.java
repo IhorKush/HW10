@@ -3,26 +3,31 @@ import java.util.Scanner;
 public class Main {
     static String booksInfo = "";
 
-
     public static void main(String[] args) {
         while (true) {
             String name = inputBookName();
             int pageCount = inputPageCount();
+            double bookPrice = inputBookPrice();
             addBook(name);
             addBook(name, pageCount);
-            //todo использовать новый метод тут
+            addBook(name, pageCount, bookPrice);
             printInfo();
         }
     }
 
     public static String inputBookName() {
-        System.out.println("Введите название книги:");
+        System.out.println("Input book name:");
         return new Scanner(System.in).nextLine();
     }
 
     public static int inputPageCount() {
-        System.out.println("Введите кол-во страниц:");
+        System.out.println("Input count of pages:");
         return new Scanner(System.in).nextInt();
+    }
+
+    public static double inputBookPrice() {
+        System.out.println("Input price:");
+        return new Scanner(System.in).nextDouble();
     }
 
     public static void addBook(String bookName) {
@@ -30,7 +35,12 @@ public class Main {
     }
 
     public static void addBook(String bookName, int pageCount) {
-        booksInfo = booksInfo + bookName + " - " + (pageCount > 0 ? pageCount : "N/A") + " стр.\n";
+        addBook(bookName, pageCount, 0);
+    }
+
+    public static void addBook(String bookName, int pageCount, double bookPrice) {
+        booksInfo = booksInfo + bookName + " - " + (pageCount > 0 ? pageCount : "N/A") + " pgs. Price: " +
+                (bookPrice > 0 ? bookPrice + " usd." : " not define.\n");
     }
 
     public static void printInfo() {
